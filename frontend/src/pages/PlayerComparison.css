@@ -1,0 +1,384 @@
+.player-comparison {
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.comparison-header {
+  text-align: center;
+  padding: 40px 24px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.comparison-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+}
+
+/* Selection Panel */
+.selection-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+}
+
+.selection-panel h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+.players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: calc(100vh - 250px);
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.player-item:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(148, 163, 184, 0.2);
+  transform: translateX(4px);
+}
+
+.player-item.selected {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: #8b5cf6;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+}
+
+.player-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.player-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.player-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-club {
+  font-size: 10px;
+  color: rgba(226, 232, 240, 0.5);
+}
+
+/* Comparison Panel */
+.comparison-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-comparison {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+  color: rgba(226, 232, 240, 0.5);
+  font-size: 18px;
+  background: rgba(15, 23, 42, 0.3);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 12px;
+}
+
+.comparison-table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.comparison-table thead {
+  background: rgba(139, 92, 246, 0.1);
+  border-bottom: 2px solid rgba(148, 163, 184, 0.1);
+}
+
+.comparison-table th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #a78bfa;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.table-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.header-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.header-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+.header-club {
+  font-size: 10px;
+  color: rgba(226, 232, 240, 0.5);
+  margin: 2px 0 0 0;
+}
+
+.remove-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  background: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.remove-btn:hover {
+  background: rgba(239, 68, 68, 0.5);
+}
+
+.comparison-table tbody tr {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.05);
+  transition: background 0.2s ease;
+}
+
+.comparison-table tbody tr:hover {
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.comparison-table tbody td {
+  padding: 16px;
+  vertical-align: middle;
+}
+
+.stat-name {
+  font-weight: 600;
+  color: #cbd5e1;
+  background: rgba(15, 23, 42, 0.3);
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 150px;
+}
+
+.stat-name::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(148, 163, 184, 0.1);
+}
+
+.highlight {
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.score-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #a78bfa 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Bar Chart */
+.bar-chart {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bar {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  height: 24px;
+  border-radius: 4px;
+  min-width: 0;
+  transition: all 0.2s ease;
+}
+
+.bar-chart span {
+  font-weight: 700;
+  color: #e2e8f0;
+  min-width: 30px;
+  text-align: right;
+}
+
+/* Warning & Danger */
+.warning {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.danger {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.rating {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+/* Scrollbar */
+.players-list::-webkit-scrollbar,
+.comparison-table-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.players-list::-webkit-scrollbar-track,
+.comparison-table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.players-list::-webkit-scrollbar-thumb,
+.comparison-table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 4px;
+}
+
+.players-list::-webkit-scrollbar-thumb:hover,
+.comparison-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .comparison-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .selection-panel {
+    position: static;
+    top: auto;
+    max-height: 300px;
+  }
+
+  .players-list {
+    max-height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .comparison-header {
+    padding: 24px 16px;
+  }
+
+  .comparison-container {
+    padding: 16px;
+  }
+
+  .comparison-table {
+    font-size: 11px;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 12px 8px;
+  }
+
+  .stat-name {
+    min-width: 100px;
+  }
+
+  .header-photo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header-name {
+    font-size: 11px;
+  }
+
+  .header-club {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .comparison-container {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .players-list {
+    max-height: 200px;
+  }
+
+  .comparison-table {
+    font-size: 10px;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 10px 6px;
+  }
+
+  .bar {
+    height: 20px;
+  }
+}
