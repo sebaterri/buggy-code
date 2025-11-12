@@ -31,12 +31,14 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
  * GET /api/players/:id/stats
  * Get detailed player stats
  */
-router.get('/:id/stats', async (req: Request, res: Response, next: NextFunction) => {
-  try {
+    const { id } = req.params;
+
     if (!id || isNaN(Number(id))) {
       return res.status(400).json({
         error: 'Player ID is required and must be a number',
         code: 'INVALID_REQUEST',
+      });
+    }
       });
     }
 
